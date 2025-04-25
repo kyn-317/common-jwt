@@ -26,6 +26,14 @@ public class JwtService {
     private final JwtConfig jwtConfig;
     
     /**
+     * initialize just secret key
+     * @param secret
+     */
+    public JwtService (String secret){
+        this.jwtConfig = new JwtConfig(secret);
+    }
+
+    /**
      * Generates a TokenDto from a TokenRequest object.
      *
      * @param request TokenRequest containing subject and roles
