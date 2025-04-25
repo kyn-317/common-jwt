@@ -1,70 +1,87 @@
 # Common JWT Library
 
-JWT(JSON Web Token) 인증을 쉽게 구현할 수 있는 공통 라이브러리입니다.
+A common library for easy implementation of JWT (JSON Web Token) authentication.
 
-## 기능
-- Access Token 및 Refresh Token 생성
-- 토큰 검증
-- Claims 추출
-- 비밀번호 암호화 (BCrypt)
+## Features
+- Generate Access Token and Refresh Token
+- Token validation
+- Claims extraction
 
-## 사용 방법
+## Usage
 
-### 1. 의존성 추가
+### 1. Add Dependency
 
 ```xml
 <dependency>
     <groupId>com.kyn</groupId>
     <artifactId>common-jwt</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
-### 2. JwtConfig 설정
+### 2. JwtConfig Setup
 
 ```java
-// 기본 설정 (Access Token 30분, Refresh Token 7일)
+// Default settings (Access Token: 30 minutes, Refresh Token: 7 days)
 JwtConfig jwtConfig = new JwtConfig("your-base64-encoded-secret-key");
 
-// 커스텀 만료 시간 설정
+// Custom expiration time settings
 JwtConfig jwtConfig = new JwtConfig(
     "your-base64-encoded-secret-key",
-    1800000L,  // Access Token 만료 시간 (ms)
-    604800000L // Refresh Token 만료 시간 (ms)
+    1800000L,  // Access Token expiration (ms)
+    604800000L // Refresh Token expiration (ms)
 );
 ```
 
-### 3. JwtService 사용
+### 3. Using JwtService
 
 ```java
-// JwtService 생성
+// Create JwtService
 JwtService jwtService = new JwtService(jwtConfig);
 
-// 토큰 생성
+// Generate token with TokenRequest
+TokenRequest request = TokenRequest.builder()
+    .subject("user@email.com")
+    .roles(Arrays.asList("ROLE_USER"))
+    .build();
+
+TokenDto tokenDto = jwtService.generateToken(request);
+
+// Generate token with claims
 Map<String, Object> claims = new HashMap<>();
-claims.put("role", "ROLE_USER");
 claims.put("username", "user1");
+claims.put("roles", Arrays.asList("ROLE_USER"));
 
 TokenDto tokenDto = jwtService.generateToken("user@email.com", claims);
 
-// 토큰 검증
+// Token validation
 boolean isValid = jwtService.validateToken(tokenDto.getAccessToken());
 
-// Claims 추출
+// Extract Claims
 Claims claims = jwtService.getClaims(tokenDto.getAccessToken());
 
-// Subject(이메일 등) 추출
+// Extract Subject
 String subject = jwtService.getSubject(tokenDto.getAccessToken());
+
+// Extract Roles
+List<String> roles = jwtService.getRoles(tokenDto.getAccessToken());
 ```
 
-## 주의사항
-1. 비밀키는 반드시 Base64로 인코딩된 문자열을 사용해야 합니다.
-2. 토큰 만료 시간은 밀리초(ms) 단위입니다.
-3. Claims에는 민감한 정보를 포함하지 않도록 주의하세요.
+## Important Notes
+1. Secret key must be Base64 encoded string
+2. Token expiration time is in milliseconds (ms)
+3. Do not include sensitive information in Claims
 
-## 테스트
-JUnit 5를 사용한 테스트 코드가 포함되어 있습니다. 다음 명령어로 테스트를 실행할 수 있습니다:
+## Testing
+The project includes test cases using JUnit 5. Run tests with:
 
 ```bash
 mvn test
-``` 
+```
+
+## Requirements
+- Java 21 or higher
+- Maven 3.6.3 or higher
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details. 
