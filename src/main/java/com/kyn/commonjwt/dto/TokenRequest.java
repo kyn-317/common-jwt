@@ -7,6 +7,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO class for representing a token request.
+ * Contains subject and roles.
+ */
 @Getter
 @Builder
 @AllArgsConstructor

@@ -5,6 +5,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO class for representing JWT tokens.
+ * Contains access and refresh tokens, as well as their expiration times.
+ */
 @Getter
 @Builder
 @AllArgsConstructor
