@@ -1,4 +1,4 @@
-# Common JWT Library
+# Personal JWT Library
 
 A common library for easy implementation of JWT (JSON Web Token) authentication.
 
@@ -15,7 +15,7 @@ A common library for easy implementation of JWT (JSON Web Token) authentication.
 <dependency>
     <groupId>com.kyn</groupId>
     <artifactId>common-jwt</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
