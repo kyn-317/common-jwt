@@ -78,10 +78,5 @@ The project includes test cases using JUnit 5. Run tests with:
 ```bash
 mvn test
 ```
-
-## Requirements
-- Java 21 or higher
-- Maven 3.6.3 or higher
-
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details. 
