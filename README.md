@@ -15,7 +15,7 @@ A common library for easy implementation of JWT (JSON Web Token) authentication.
 <dependency>
     <groupId>com.kyn</groupId>
     <artifactId>common-jwt</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 
@@ -38,6 +38,8 @@ JwtConfig jwtConfig = new JwtConfig(
 ```java
 // Create JwtService
 JwtService jwtService = new JwtService(jwtConfig);
+// Create Just String
+JwtService jwtService = new JwtService("your-base64-encoded-secret-key");
 
 // Generate token with TokenRequest
 TokenRequest request = TokenRequest.builder()
@@ -68,15 +70,9 @@ List<String> roles = jwtService.getRoles(tokenDto.getAccessToken());
 ```
 
 ## Important Notes
-1. Secret key must be Base64 encoded string
+1. Secret key is Base64 encoded string
 2. Token expiration time is in milliseconds (ms)
 3. Do not include sensitive information in Claims
 
-## Testing
-The project includes test cases using JUnit 5. Run tests with:
-
-```bash
-mvn test
-```
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details. 
