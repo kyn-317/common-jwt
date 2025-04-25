@@ -12,11 +12,19 @@ A common library for easy implementation of JWT (JSON Web Token) authentication.
 ### 1. Add Dependency
 
 ```xml
-<dependency>
-    <groupId>com.kyn</groupId>
-    <artifactId>common-jwt</artifactId>
-    <version>1.0.3</version>
-</dependency>
+
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+    
+	<dependency>
+	    <groupId>com.github.kyn-317</groupId>
+	    <artifactId>common-jwt</artifactId>
+	    <version>v1.0.4</version>
+	</dependency>
 ```
 
 ### 2. JwtConfig Setup
