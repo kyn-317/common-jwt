@@ -48,6 +48,6 @@ public class JwtConfig {
      * @return The key name for authorities in JWT claims
      */
     public String getAuthoritiesKey() {
-        return "auth";
+        return this.authoritiesKey;
     }
 } 

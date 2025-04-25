@@ -44,6 +44,20 @@ public class JwtService {
         claims.put(jwtConfig.getAuthoritiesKey(), request.getRoles());
         return generateTokenDto(request.getSubject(), claims);
     }
+
+    /**
+     * Generates a TokenDto from a TokenRequest object with custom access and refresh token expiration times.
+     *
+     * @param request TokenRequest containing subject and roles
+     * @param accessExpiration Access token expiration time in milliseconds
+     * @param refreshExpiration Refresh token expiration time in milliseconds
+     * @return TokenDto containing access token, refresh token, and expiration times
+     */
+    public TokenDto generateToken(TokenRequest request, long accessExpiration, long refreshExpiration) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(jwtConfig.getAuthoritiesKey(), request.getRoles());
+        return generateTokenDto(request.getSubject(), claims, accessExpiration, refreshExpiration);
+    }
     
     /**
      * Generates a TokenDto from subject and claims.
@@ -87,6 +101,20 @@ public class JwtService {
         Map<String, Object> claims = new HashMap<>();
         claims.put(jwtConfig.getAuthoritiesKey(), request.getRoles());
         return generateJustToken(request.getSubject(), claims);
+    }
+
+
+    /**
+     * Generates a single token string from a TokenRequest with custom access token expiration time.
+     *
+     * @param request TokenRequest containing subject and roles
+     * @param accessExpiration Access token expiration time in milliseconds
+     * @return JWT token string
+     */
+    public String generateJustToken(TokenRequest request, long accessExpiration) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(jwtConfig.getAuthoritiesKey(), request.getRoles());
+        return generateJustToken(request.getSubject(), claims, accessExpiration);
     }
     
     /**
